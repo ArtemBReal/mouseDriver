@@ -30,8 +30,8 @@ static ssize_t driverRead(struct file *filp, char __user *userBuffer, size_t len
 	sprintf (strRandomValue, "Our random value: %llu\n", randomValue);
 	
 	if (copy_to_user(userBuffer, strRandomValue, strlen(strRandomValue))) {
-        return -EFAULT;
-    }
+        	return -EFAULT;
+    	}
 
 	WRITE_ONCE(dataAvailable, false);
 	WRITE_ONCE(index, 0);
