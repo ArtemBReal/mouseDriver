@@ -1,8 +1,6 @@
 #include "randomMouse.h"
 
 static irqreturn_t mouseInterrupt(int irq, void *devId) {
-
-
 	bootTime = ktime_get_boottime();
 	bitValue = (bootTime) &1;
 	if (index < randomBits){
