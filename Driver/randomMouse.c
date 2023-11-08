@@ -7,9 +7,6 @@ static irqreturn_t mouseInterrupt(int irq, void *devId) {
 	bitValue = (bootTime) &1;
 	if (index < randomBits){
 		tempValue = tempValue | (bitValue << index);
-		//binaryArray[index] = bitValue;
-		//randomValue += binaryArray[index] * (1<<(randomBits - index - 1));
-		//randomValue = index;
 		++index;
 	} else if (index == randomBits){
 		WRITE_ONCE(dataAvailable, true);
@@ -32,7 +29,6 @@ static ssize_t driverRead(struct file *filp, char __user *userBuffer, size_t len
 	randomValue = tempValue;
 	char strRandomValue[randomBits];
 	
-	//pr_alert("OUR RANDOM VALUE: %llu", randomValue);
 	sprintf (strRandomValue, "Our random value: %llu\n", randomValue);
 	
 	if (copy_to_user(userBuffer, strRandomValue, strlen(strRandomValue))) {
